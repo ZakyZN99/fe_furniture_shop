@@ -12,7 +12,7 @@
             </div>
             <div class="hidden items-center md:flex space-x-[44px]">
                 <ul class="md:flex space-x-[44px]">
-                    <input v-if="isSearchActive" type="text" placeholder="Search" class="border border-gray-300 rounded-md focus:outline-none focus:border-[#C0772C]">
+                    <input v-if="isSearchActive" type="text" placeholder="Search" class="border p-1 border-gray-300 rounded-md focus:outline-none focus:border-[#C0772C]">
                     <li><a href="#"><img src="../assets/icons/akar-icons_search.png" @click="toggleSearch" /></a></li>
                     <li><a href="#"><img src="../assets/icons/akar-icons_heart.png" /></a></li>
                     <li><a href="#"><img src="../assets/icons/ant-design_shopping-cart-outlined.png" /></a></li>

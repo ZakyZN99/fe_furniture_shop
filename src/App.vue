@@ -1,17 +1,22 @@
 <template>
-  <nav-bar/>
-  <home-page/>
+  <!-- <view-product-page-vue/> -->
+  <!-- <home-page/> -->
+  <detail-product-page/>
 </template>
 
 <script>
-import NavBar from './components/Nav-bar.vue'
-import HomePage from './components/pages/Home-page.vue'
+import DetailProductPage from './components/pages/DetailProduct-page.vue'
+// import ViewProductPageVue from './components/pages/ViewProduct-page.vue'
+// import HomePage from './components/pages/Home-page.vue'
+
 
 export default {
   name: 'App',
   components: {
-    NavBar,
-    HomePage
+    DetailProductPage
+    // HomePage
+    // ViewProductPageVue
+
   }
 }
 </script>
