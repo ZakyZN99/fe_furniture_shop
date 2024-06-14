@@ -19,7 +19,7 @@
             <h1 class="text-[#642C0C] font-medium text-[48px]">Featured</h1>
             <div class="flex items-center justify-between">
                 <p class="open-sans font-normal text-[#CCC4B4]">Explore our selection of modern furniture for your home.</p>
-                <button class="text-[#ffffff] w-[120px] h-[51px] bg-[#C0772C] font-extrabold">View All</button>
+                <button @click="goToShop" class="text-[#ffffff] w-[120px] h-[51px] bg-[#C0772C] font-extrabold">View All</button>
             </div>
             <div class="pt-[40px] flex gap-[30px]  overflow-x-hidden relative scrollbar-hide"  ref="productContainer">
                 <div  v-for="(product, index) in products" :key="index" class="border w-[393px] h-[475px]  transition ease-in-out duration-700"  :style="{ transform: `translateX(-${currentImageIndex}px)` }">
@@ -32,12 +32,12 @@
                 </div>
             </div>
             <div class="flex pt-[71px] items-center justify-between ">
-                <div class="flex gap-[12px]">
+                <!-- <div class="flex gap-[12px]"> -->
                     <!-- <img  src="../../assets/icons/Ellipse 99.png" class="w-[13.74px] h-[13.47px]"/>
                     <img src="../../assets/icons/Ellipse 100.png" class="w-[13.74px] h-[13.47px]"/>
                     <img src="../../assets/icons/Ellipse 100.png" class="w-[13.74px] h-[13.47px] "/>
                     <img src="../../assets/icons/Ellipse 100.png" class="w-[13.74px] h-[13.47px] "/> -->
-                </div>
+                <!-- </div> -->
                 <div class="flex space-x-[24px]">
                     <button @click="prevImage" class=" hover:bg-white flex justify-center items-center rounded-full border-[#E5D097] w-[60px] h-[60px] border-2"><img class="w-[25.67px] h-[21.98px]" src="../../assets/icons/arrow_back.png"/></button>
                     <button @click="nextImage" class=" hover:bg-white flex justify-center items-center rounded-full border-[#E5D097] w-[60px] h-[60px] border-2"><img class="w-[25.67px] h-[21.98px]" src="../../assets/icons/arrow_forward.png"/></button>
@@ -194,7 +194,7 @@ import NavBar from '../Nav-bar.vue';
 import FooterBar from '../Footer-bar.vue';
 
 export default {
-    name: 'HomePage',
+    name: 'HomePageVue',
     components: {
         LMap,
         LTileLayer,

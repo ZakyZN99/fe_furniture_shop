@@ -1,20 +1,35 @@
 <template>
   <!-- <view-product-page-vue/> -->
-  <!-- <home-page/> -->
-  <detail-product-page/>
+  <home-page-vue/>
+  <!-- <detail-product-page/> -->
+  <!-- <carts-page-vue/> -->
+  <!-- <payment-page-vue/> -->
+  <!-- <about-page-vue/> -->
+  <!-- <contact-page-vue/> -->
+  <!-- <payment-method-page-vue/> -->
 </template>
 
 <script>
-import DetailProductPage from './components/pages/DetailProduct-page.vue'
+// import AboutPageVue from './components/pages/About-page.vue'
+// import ContactPageVue from './components/pages/Contact-page.vue'
+// import PaymentMethodPageVue from './components/pages/PaymentMethod-page.vue';
+// import PaymentPageVue from './components/pages/Payment-page.vue'
+// import CartsPageVue from './components/pages/Carts-page.vue'
+// import DetailProductPage from './components/pages/DetailProduct-page.vue'
 // import ViewProductPageVue from './components/pages/ViewProduct-page.vue'
-// import HomePage from './components/pages/Home-page.vue'
+import HomePageVue from './components/pages/Home-page.vue'
 
 
 export default {
   name: 'App',
   components: {
-    DetailProductPage
-    // HomePage
+    HomePageVue
+    // ContactPageVue
+    // AboutPageVue
+    // PaymentMethodPageVue
+    // PaymentPageVue
+    // DetailProductPage
+    // CartsPageVue
     // ViewProductPageVue
 
   }
