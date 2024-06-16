@@ -27,7 +27,7 @@
             <p class="open-sans text-[18px] text-[#CCC4B4] text-justify pb-[20px]">
                 We are more than just a furniture brand, we are a community of design enthusiasts who value creativity, innovation, and sustainability. Our commitment to environmental responsibility drives us to source eco-friendly materials and adopt sustainable manufacturing practices. We believe in creating furniture that not only enriches your home but also respects our planet.
             </p>
-            <button class=" h-[51px] bg-[#642C0C] w-[20%] rounded-2xl text-[#FFFFFF] font-extrabold text-[20px]">Contact Us</button>
+            <button @click="goToContact" class=" h-[51px] bg-[#642C0C] w-[20%] rounded-2xl text-[#FFFFFF] font-extrabold text-[20px]">Contact Us</button>
         </div>
         <div class="w-[50%]">
             <img src="../../assets/img/spacejoy-9M66C_w_ToM-unsplash 1.png" class="w-[710px] h-[600px] rounded-2xl" />
@@ -48,6 +48,11 @@ export default {
         FooterBarVue,
         NavBarVue,
         FlIOsArrowRtl
+    },
+    methods:{
+        goToContact(){
+            this.$router.push({name: "ContactPage"})
+        }
     }
 }
 </script>

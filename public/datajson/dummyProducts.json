@@ -5,7 +5,7 @@
             "image": "spacejoy-c0JoR_-2x3E-unsplash 1.png",
             "name": "Modern Minimalist Sofa",
             "description": "Elegant, Minimalist, Modern",
-            "price": "Rp. 12.000.000,00",
+            "price": 12000000,
             "reviews": 3,
             "quantity": 1,
             "isFavorite": false
@@ -15,7 +15,7 @@
             "image": "spacejoy-ctyssSFmXmU-unsplash 1.png",
             "name": "Classic Wooden Chair",
             "description": "Vintage, Sturdy, Elegant",
-            "price": "Rp. 3.500.000,00",
+            "price": 3500000,
             "reviews": 3,
             "quantity": 1,
             "isFavorite": false
@@ -25,7 +25,7 @@
             "image": "spacejoy-EVjqpcn79AM-unsplash 1.png",
             "name": "Stylish Coffee Table",
             "description": "Modern, Sleek, Functional",
-            "price": "Rp. 2.000.000,00",
+            "price": 2000000,
             "reviews": 0,
             "quantity": 1,
             "isFavorite": false
@@ -35,7 +35,7 @@
             "image": "spacejoy-k2pumSRYYss-unsplash 1.png",
             "name": "Ergonomic Office Chair",
             "description": "Comfortable, Adjustable, Durable",
-            "price": "Rp. 1.800.000,00",
+            "price": 1800000,
             "reviews": 0,
             "quantity": 1,
             "isFavorite": false
@@ -45,7 +45,7 @@
             "image": "spacejoy-x3mSC1WnWhc-unsplash 1.png",
             "name": "Contemporary Floor Lamp",
             "description": "Bright, Minimalist, Energy-efficient",
-            "price": "Rp. 900.000,00",
+            "price": 900000,
             "reviews": 0,
             "quantity": 1,
             "isFavorite": false
@@ -55,7 +55,7 @@
             "image": "spacejoy-k2pumSRYYss-unsplash 1.png",
             "name": "Ergonomic Office Chair",
             "description": "Comfortable, Adjustable, Durable",
-            "price": "Rp. 1.800.000,00",
+            "price": 1800000,
             "reviews": 0,
             "quantity": 1,
             "isFavorite": false
@@ -65,7 +65,7 @@
             "image": "spacejoy-x3mSC1WnWhc-unsplash 1.png",
             "name": "Contemporary Floor Lamp",
             "description": "Bright, Minimalist, Energy-efficient",
-            "price": "Rp. 900.000,00",
+            "price": 900000,
             "reviews": 0,
             "quantity": 1,
             "isFavorite": false
@@ -75,7 +75,7 @@
             "image": "spacejoy-k2pumSRYYss-unsplash 1.png",
             "name": "Ergonomic Office Chair",
             "description": "Comfortable, Adjustable, Durable",
-            "price": "Rp. 1.800.000,00",
+            "price": 1800000,
             "reviews": 0,
             "quantity": 1,
             "isFavorite": false
@@ -85,7 +85,7 @@
             "image": "spacejoy-x3mSC1WnWhc-unsplash 1.png",
             "name": "Contemporary Floor Lamp",
             "description": "Bright, Minimalist, Energy-efficient",
-            "price": "Rp. 900.000,00",
+            "price": 900000,
             "reviews": 0,
             "quantity": 1,
             "isFavorite": false
@@ -95,7 +95,7 @@
             "image": "spacejoy-c0JoR_-2x3E-unsplash 1.png",
             "name": "Modern Minimalist Sofa",
             "description": "Elegant, Minimalist, Modern",
-            "price": "Rp. 12.000.000,00",
+            "price": 12000000,
             "reviews": 3,
             "quantity": 1,
             "isFavorite": false
@@ -105,7 +105,7 @@
             "image": "spacejoy-ctyssSFmXmU-unsplash 1.png",
             "name": "Classic Wooden Chair",
             "description": "Vintage, Sturdy, Elegant",
-            "price": "Rp. 3.500.000,00",
+            "price": 3500000,
             "reviews": 3,
             "quantity": 1,
             "isFavorite": false
@@ -115,8 +115,88 @@
             "image": "spacejoy-EVjqpcn79AM-unsplash 1.png",
             "name": "Stylish Coffee Table",
             "description": "Modern, Sleek, Functional",
-            "price": "Rp. 2.000.000,00",
+            "price": 2000000,
             "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 13,
+            "image": "spacejoy-EVjqpcn79AM-unsplash 1.png",
+            "name": "Stylish Coffee Table",
+            "description": "Modern, Sleek, Functional",
+            "price": 2000000,
+            "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 14,
+            "image": "spacejoy-k2pumSRYYss-unsplash 1.png",
+            "name": "Ergonomic Office Chair",
+            "description": "Comfortable, Adjustable, Durable",
+            "price": 1800000,
+            "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 15,
+            "image": "spacejoy-x3mSC1WnWhc-unsplash 1.png",
+            "name": "Contemporary Floor Lamp",
+            "description": "Bright, Minimalist, Energy-efficient",
+            "price": 900000,
+            "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 16,
+            "image": "spacejoy-k2pumSRYYss-unsplash 1.png",
+            "name": "Ergonomic Office Chair",
+            "description": "Comfortable, Adjustable, Durable",
+            "price": 1800000,
+            "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 17,
+            "image": "spacejoy-x3mSC1WnWhc-unsplash 1.png",
+            "name": "Contemporary Floor Lamp",
+            "description": "Bright, Minimalist, Energy-efficient",
+            "price": 900000,
+            "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 18,
+            "image": "spacejoy-k2pumSRYYss-unsplash 1.png",
+            "name": "Ergonomic Office Chair",
+            "description": "Comfortable, Adjustable, Durable",
+            "price": 1800000,
+            "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 19,
+            "image": "spacejoy-x3mSC1WnWhc-unsplash 1.png",
+            "name": "Contemporary Floor Lamp",
+            "description": "Bright, Minimalist, Energy-efficient",
+            "price": 900000,
+            "reviews": 0,
+            "quantity": 1,
+            "isFavorite": false
+        },
+        {
+            "id": 20,
+            "image": "spacejoy-c0JoR_-2x3E-unsplash 1.png",
+            "name": "Modern Minimalist Sofa",
+            "description": "Elegant, Minimalist, Modern",
+            "price": 12000000,
+            "reviews": 3,
             "quantity": 1,
             "isFavorite": false
         }

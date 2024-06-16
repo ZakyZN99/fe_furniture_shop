@@ -25,25 +25,25 @@
                     <th class="">Subtotal</th>
                 </thead>
                 <tbody >
-                    <tr class="border-[2px] border-[#CCC4B4] text-[#642C0C]  text-[16px] open-sans ">
-                        <td>1</td>
+                    <tr v-for="(item, index) in cartItems" :key="item.id" class="border-[2px] border-[#CCC4B4] text-[#642C0C]  text-[16px] open-sans ">
+                        <td>{{ index + 1 }}</td>
                         <td>
                             <div class="flex justify-center p-2">
-                                <img src="../../assets/img/spacejoy-EVjqpcn79AM-unsplash 1.png" class="w-[105px] h-[105px]" />
+                                <img :src="item.image" class="w-[105px] h-[105px]" />
                             </div>
                         </td>
-                        <td>Mnimalis Sofa</td>
-                        <td>Rp.10000000</td>
+                        <td>{{ item.name }}</td>
+                        <td>Rp. {{item.price.toLocaleString()}}</td>
                         <td>
                             <div class=" flex justify-center">
                                 <div class="border-[2px] w-[91px] h-[43px] border-[#642C0C] flex items-center text-center justify-between">
                                     <button class="open-sans text-[#642C0C] text-[26px] pl-[8px] pb-[2px]">-</button>
-                                    <span class="text-[#642C0C] text-[16px] open-sans px-[12px]">1</span>
+                                    <span class="text-[#642C0C] text-[16px] open-sans px-[12px]">{{item.quantity}}</span>
                                     <button class="open-sans text-[#642C0C] text-[24px] pr-[8px]">+</button>
                                 </div>
                             </div>
                         </td>
-                        <td>Rp.200000</td>
+                        <td>Rp.{{(item.price * item.quantity).toLocaleString()}}</td>
                     </tr>
                     
                     
@@ -56,14 +56,14 @@
             <h1 class="pt-[32px] pb-[50px] text-[#642C0C] font-semibold text-[32px]">Cart Totals</h1>
             <div class="flex justify-between px-[28px] pb-[30px]">
                 <h2 class="open-sans font-normal text-[16px] text-[#642C0C  ]">Subtotal</h2>
-                <h2 class="text-[#CCC4B4] open-sans font-normal text-[16px]">Rp. 1000000</h2>
+                <h2 class="text-[#CCC4B4] open-sans font-normal text-[16px]">Rp. {{ cartSubtotal.toLocaleString() }}</h2>
             </div>
             <div class="flex justify-between px-[28px] pb-[40px]">
                 <h2 class="open-sans font-normal text-[16px] text-[#642C0C]">Total</h2>
-                <h2 class="open-sans font-semibold text-[20px] text-[#642C0C]">Rp. 1000000</h2>
+                <h2 class="open-sans font-semibold text-[20px] text-[#642C0C]">Rp. {{ cartTotal.toLocaleString() }}</h2>
             </div>
             <div class="px-[28px] pb-[32px]">
-                <button class=" h-[51px] bg-[#C0772C] w-full text-[#FFFFFF] font-extrabold text-[20px]">Continue to Payment</button>
+                <button @click="goToPayment" class=" h-[51px] bg-[#C0772C] w-full text-[#FFFFFF] font-extrabold text-[20px]">Continue to Payment</button>
             </div>
         </div>
     </div>
@@ -76,6 +76,7 @@
 import FooterBar from '../Footer-bar.vue';
 import NavBar from '../Nav-bar.vue';
 import { FlIOsArrowRtl } from "@kalimahapps/vue-icons";
+import { mapState, mapActions } from 'vuex';
 
 export default {
     name: 'CartsPageVue',
@@ -83,8 +84,26 @@ export default {
         FooterBar,
         NavBar,
         FlIOsArrowRtl,
-    }
-}
+    },
+    computed: {
+        ...mapState(['cart']),
+        cartItems() {
+            return this.cart;
+        },
+        cartTotal() {
+            return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        },
+        cartSubtotal() {
+            return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        },
+    },
+    methods: {
+        ...mapActions(['updateQuantity']),
+        goToPayment(){
+            this.$router.push({name: 'PaymentPageVue'})
+        }
+    },
+};
 </script>
 
 <style scoped>

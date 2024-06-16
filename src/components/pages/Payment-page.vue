@@ -35,38 +35,56 @@
         </div>
         
         <div class="w-full">
-            <form >
+            <form  @submit.prevent="submitForm" >
                 <!-- ADDRESS -->
                 <div  class="w-full border-[2px] bg-[#FFFFFF] border-[#CCC4B4] px-[32px] py-[32px] ">
                     <h2 class="open-sans font-semibold text-[20px] text-[#642C0C] ">Where do you send it?</h2>
                     <div class="flex gap-[30px] pt-[20px]">
                         <div class="w-[50%]">
                             <h4 class="text-[16px] text-[#642C0C] open-sans font-semibold">Name :</h4>
-                            <input type="text" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <input type="text" v-model="formData.name" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <div v-if="formErrors.name" class="text-red-500">{{ formErrors.name }}</div>
                         </div>
                         <div class="w-[50%]">
                             <h4 class="text-[16px] text-[#642C0C] open-sans font-semibold">Address :</h4>
-                            <input type="text" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <input type="text" v-model="formData.address" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <div v-if="formErrors.address" class="text-red-500">{{ formErrors.address }}</div>
                         </div>
                     </div>
                     <div class="flex gap-[30px] pt-[20px]">
                         <div class="w-[50%]">
                             <h4 class="text-[16px] text-[#642C0C] open-sans font-semibold">Province :</h4>
-                            <input type="text" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <select v-model="formData.province" @change="fetchRegencies(formData.province)" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] ">
+                                <option value="">Select Province</option>
+                                <option v-for="province in provinces" :key="province.id" :value="province.id">{{ province.name }}</option>
+                            </select>
+                            <div v-if="formErrors.province" class="text-red-500">{{ formErrors.province }}</div>
                         </div>
                         <div class="w-[50%]">
                             <h4 class="text-[16px] text-[#642C0C] open-sans font-semibold">Regency :</h4>
-                            <input type="text" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <select v-model="formData.regency" @change="fetchDistricts(formData.regency)" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] ">
+                                <option value="">Select Regency</option>
+                                <option v-for="regency in regencies" :key="regency.id" :value="regency.id">{{ regency.name }}</option>
+                            </select>
+                            <div v-if="formErrors.regency" class="text-red-500">{{ formErrors.regency }}</div>
                         </div>
                     </div>
                     <div class="flex gap-[30px] pt-[20px]">
                         <div class="w-[50%]">
                             <h4 class="text-[16px] text-[#642C0C] open-sans font-semibold">District :</h4>
-                            <input type="text" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <select v-model="formData.district" @change="fetchVillages(formData.district)" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] ">
+                                <option value="">Select District</option>
+                                <option v-for="district in districts" :key="district.id" :value="district.id">{{ district.name }}</option>
+                            </select>
+                            <div v-if="formErrors.district" class="text-red-500">{{ formErrors.district }}</div>
                         </div>
                         <div class="w-[50%]">
                             <h4 class="text-[16px] text-[#642C0C] open-sans font-semibold">Village :</h4>
-                            <input type="text" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                            <select v-model="formData.village" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] ">
+                                <option value="">Select Village</option>
+                                <option v-for="village in villages" :key="village.id" :value="village.id">{{ village.name }}</option>
+                            </select>
+                            <div v-if="formErrors.village" class="text-red-500">{{ formErrors.village }}</div>
                         </div>
                     </div>
                 </div>
@@ -85,25 +103,25 @@
                                     <th class="">Subtotal</th>
                                 </thead>
                                 <tbody >
-                                    <tr class="border-[2px] border-[#CCC4B4] text-[#642C0C]  text-[16px] open-sans ">
-                                        <td>1</td>
+                                    <tr v-for="(item, index) in cartItems" :key="item.id" class="border-[2px] border-[#CCC4B4] text-[#642C0C]  text-[16px] open-sans ">
+                                        <td>{{index + 1}}</td>
                                         <td>
                                             <div class="flex justify-center p-2">
-                                                <img src="../../assets/img/spacejoy-EVjqpcn79AM-unsplash 1.png" class="w-[105px] h-[105px]" />
+                                                <img :src="item.image" class="w-[105px] h-[105px]" />
                                             </div>
                                         </td>
-                                        <td>Mnimalis Sofa</td>
-                                        <td>Rp.10000000</td>
+                                        <td>{{item.name}}</td>
+                                        <td>Rp. {{item.price.toLocaleString()}}</td>
                                         <td>
                                             <div class=" flex justify-center">
                                                 <div class="border-[2px] w-[91px] h-[43px] border-[#642C0C] flex items-center text-center justify-between">
                                                     <button class="open-sans text-[#642C0C] text-[26px] pl-[8px] pb-[2px]">-</button>
-                                                    <span class="text-[#642C0C] text-[16px] open-sans px-[12px]">1</span>
+                                                    <span class="text-[#642C0C] text-[16px] open-sans px-[12px]">{{item.quantity}}</span>
                                                     <button class="open-sans text-[#642C0C] text-[24px] pr-[8px]">+</button>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>Rp.200000</td>
+                                        <td>Rp. {{(item.price * item.quantity).toLocaleString()}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -112,7 +130,12 @@
 
                         <input type="text" placeholder="Add a note (Optional)" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] open-sans "/>
                         <h5 class="text-[#642C0C] open-sans font-semibold text-[20px] py-[32px]">Shipping</h5>
-                        <input type="text" placeholder="Reguler (3 - 7 Working Days)" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] open-sans text-[#642C0C]"/>
+                        <select v-model="formData.shippingOption" class="w-[100%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] open-sans text-[#642C0C]">
+                            <option value="">Choose Delivery Method</option>
+                            <option v-for="option in shippingOptions" :key="option.id" :value="option.id">{{ option.name }} - Rp. {{ option.price.toLocaleString() }}</option>
+                        </select>
+                        <div v-if="formErrors.shippingOption" class="text-red-500">{{ formErrors.shippingOption }}</div>
+
                         <div class="flex items-center pt-[20px]">
                             <input type="checkbox" id="shipping-insurance" class="mr-[10px]" />
                             <label for="shipping-insurance" class="text-[16px] text-[#642C0C] open-sans font-semibold">Shipping insurance</label>
@@ -120,7 +143,7 @@
                         <p class="text-[#000000] open-sans font-light text-[14px]">Risk coverage if the item is lost or damaged in transit. <a class="text-[#642C0C] font-semibold" href="#">Learn more</a></p>
                     </div>
                         <!-- TOTAL -->
-                    <div class="w-[30%] h-[370px] border-[2px] bg-[#FFFFFF] border-[#CCC4B4] px-[32px] py-[32px]">
+                    <div class="w-[30%] border-[2px] bg-[#FFFFFF] border-[#CCC4B4] px-[32px] py-[32px]">
                         <div class="flex gap-[16px]">
                             <input type="text" placeholder="Insert Voucher Code" class="w-[80%] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] open-sans text-[#642C0C]"/>
                             <button class="border-[#642C0C] border-[2px] text-[#642C0C] text-[20px] font-extrabold w-[76px] h-[50px]">Use</button>
@@ -129,15 +152,19 @@
                         <hr class="bg-[#D9D9D9] justify-center my-[24px] h-[2px]"/>
                         <div class="flex justify-between pb-[24px]">
                             <h2 class="open-sans font-normal text-[16px] text-[#642C0C]">Subtotal</h2>
-                            <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. 1000000</h2>
+                            <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp.  {{ cartSubtotal.toLocaleString() }}</h2>
+                        </div>
+                        <div class="flex justify-between pb-[24px]">
+                            <h2 class="open-sans font-normal text-[16px] text-[#642C0C]">Shipping Fee</h2>
+                            <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. {{ getShippingPrice() }}</h2>
                         </div>
                         <div class="flex justify-between">
                             <h2 class="open-sans font-normal text-[16px] text-[#642C0C]">Total</h2>
-                            <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. 1000000</h2>
+                            <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. {{ calculatedCartTotal.toLocaleString() }}</h2>
                         </div>
                         <hr class="bg-[#D9D9D9] justify-center my-[24px] h-[2px]"/>
                         <div class="">
-                            <button class=" h-[51px] bg-[#C0772C] w-full text-[#FFFFFF] font-extrabold text-[20px]">Choose Payment Methode</button>
+                            <button  type="submit" class=" h-[51px] bg-[#C0772C] w-full text-[#FFFFFF] font-extrabold text-[20px]">Choose Payment Methode</button>
                         </div>
                     </div>
                 </div>
@@ -151,13 +178,134 @@
 import NavBar from '../Nav-bar.vue';
 import FooterBar from '../Footer-bar.vue';
 import { FlIOsArrowRtl } from "@kalimahapps/vue-icons";
+import { mapState, mapActions } from 'vuex';
+import axios from 'axios';
 
 export default {
     name: 'PaymentPageVue' ,
+    props: ['cartTotal'],
     components:{
         NavBar,
         FooterBar,
         FlIOsArrowRtl,
+    },
+    data() {
+        return {
+            formData: {
+                name: '',
+                address:'',
+                province: '',
+                regency: '',
+                district: '',
+                village: '',
+                shippingOption: '',
+            },
+            formErrors: {},
+            provinces: [],
+            regencies: [],
+            districts: [],
+            villages: [],
+            shippingOptions: [ 
+            { id: 1, name: 'Regular (3 - 7 Working Days)', price: 50000 },
+            { id: 2, name: 'Express (1 - 2 Working Days)', price: 100000 },
+            ],
+        };
+    },
+    mounted() {
+        this.fetchProvinces();
+    },
+    computed:{
+        ...mapState(['cart']),
+        cartItems() {
+            return this.cart;
+        },
+        cartSubtotal() {
+            return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        },
+        calculatedCartTotal() {
+            const subtotal = this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+            const shippingOption = this.shippingOptions.find(option => option.id === parseInt(this.formData.shippingOption));
+
+            return subtotal + (shippingOption ? shippingOption.price : 0);
+        },
+    },
+    methods:{
+        ...mapActions(['updateQuantity']),
+        async fetchProvinces() {
+            try {
+                const response = await axios.get('https://zakyzn99.github.io/api-wilayah-indonesia/api/provinces.json');
+                this.provinces = response.data;
+            } catch (error) {
+                console.error('Error fetching provinces:', error);
+            }       
+        },
+        async fetchRegencies(provinceId) {
+            try {
+                const response = await axios.get(`https://zakyzn99.github.io/api-wilayah-indonesia/api/regencies/${provinceId}.json`);
+                this.regencies = response.data;
+            } catch (error) {
+                console.error('Error fetching regencies:', error);
+            }
+        },
+        async fetchDistricts(regencyId) {
+            try {
+                const response = await axios.get(`https://zakyzn99.github.io/api-wilayah-indonesia/api/districts/${regencyId}.json`);
+                this.districts = response.data;
+            } catch (error) {
+                console.error('Error fetching districts:', error);
+            }
+        },
+        async fetchVillages(districtId) {
+            try {
+                const response = await axios.get(`https://zakyzn99.github.io/api-wilayah-indonesia/api/villages/${districtId}.json`);
+                this.villages = response.data;
+            } catch (error) {
+                console.error('Error fetching villages:', error);
+            }
+        },
+        getShippingPrice() {
+            const selectedShippingOption = this.shippingOptions.find(option => option.id === parseInt(this.formData.shippingOption));
+            return selectedShippingOption ? selectedShippingOption.price.toLocaleString() : '0';
+        },
+        validateForm() {
+            this.formErrors = {}; 
+
+            if (!this.formData.name.trim()) {
+                this.formErrors.name = 'Name is required.';
+            }
+
+            if (!this.formData.address.trim()) {
+                this.formErrors.address = 'Address is required.';
+            }
+
+            if (!this.formData.province) {
+                this.formErrors.province = 'Province is required.';
+            }
+
+            if (!this.formData.regency) {
+                this.formErrors.regency = 'Regency is required.';
+            }
+
+            if (!this.formData.district) {
+                this.formErrors.district = 'District is required.';
+            }
+
+            if (!this.formData.village) {
+                this.formErrors.village = 'Village is required.';
+            }
+            if (!this.formData.shippingOption) {
+                this.formErrors.shippingOption = 'Shipping option is required.';
+            }
+
+            return Object.keys(this.formErrors).length === 0;
+        },
+        submitForm() {
+            if (this.validateForm()) {
+                this.$router.push({name: 'PaymentMethodPageVue' ,
+                params: { cartTotal: this.calculatedCartTotal }})
+            }
+        },
     }
 }
 </script>

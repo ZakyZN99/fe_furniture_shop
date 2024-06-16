@@ -127,13 +127,9 @@
             </div>
             <a href="#"> <p class="open-sans text-[#000000]">View available vouchers</p></a>
             <hr class="bg-[#D9D9D9] justify-center my-[24px] h-[2px]"/>
-            <div class="flex justify-between pb-[24px]">
-                <h2 class="open-sans font-normal text-[16px] text-[#642C0C]">Subtotal</h2>
-                <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. 1000000</h2>
-            </div>
             <div class="flex justify-between">
                 <h2 class="open-sans font-normal text-[16px] text-[#642C0C]">Total</h2>
-                <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. 1000000</h2>
+                <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. {{ cartTotal }}</h2>
             </div>
             <hr class="bg-[#D9D9D9] justify-center my-[24px] h-[2px]"/>
             <div class="">
@@ -150,14 +146,20 @@ import NavBarVue from '../Nav-bar.vue'
 import { FlIOsArrowRtl } from "@kalimahapps/vue-icons";
 
 
+
 export default {
     name: 'PaymentMethodPageVue',
+    props: ['cartTotal'],
     components:{
         FooterBarVue,
         NavBarVue,
         FlIOsArrowRtl
+    },
+    mounted() {
+        console.log('Cart Total:', this.cartTotal); // Check if cartTotal is received
     }
 }
+
 </script>
 
 <style scoped>

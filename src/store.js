@@ -21,7 +21,9 @@ state: {
         state.selectedProduct.size = size;
     },
     SET_QUANTITY(state, quantity) {
-        state.selectedProduct.quantity = quantity;
+        if (state.selectedProduct) {
+            state.selectedProduct.quantity = quantity;
+        }
     },
     UPDATE_QUANTITY(state, { productId, quantity }) {
         const product = state.cart.find(item => item.id === productId);
@@ -31,6 +33,9 @@ state: {
     },
     SET_FAVORITE(state, isFavorite) {
         state.selectedProduct.isFavorite = isFavorite;
+    },
+    SET_SELECTED_PRODUCT(state, product) {
+        state.selectedProduct = product;
     },
 },
 actions: {
@@ -46,14 +51,22 @@ actions: {
     updateQuantity({ commit }, payload) {
         commit('UPDATE_QUANTITY', payload);
     },
+    removeFromCart({ commit }, productId) {
+        commit('REMOVE_FROM_CART', productId);
+    },
     setFavorite({ commit }, isFavorite) {
         commit('SET_FAVORITE', isFavorite);
     },
 }, 
 getters: {
     cartItems: (state) => state.cart,
-    selectedProduct: (state) => state.selectedProduct
-    }
+    selectedProduct: (state) => state.selectedProduct,
+    totalPrice: (state) => {
+            return state.cart.reduce((total, item) => {
+            return total + (item.price * item.quantity);
+            }, 0);
+        }
+    },
 });
 
 export default store;

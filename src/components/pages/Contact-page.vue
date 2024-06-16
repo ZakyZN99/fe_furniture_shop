@@ -25,27 +25,31 @@
                 <h3 class="pb-[24px] open-sans font-semibold text-[20px] text-[#642C0C]">Office</h3>
                 <p class="open-sans text-[#642C0C] text-[18px] pb-[48px]">Jl. Gatot Subroto, Bandung</p>
             </div>
-            <div class="open-sans text-[16px] w-[30%]">
+            <form @submit.prevent="submitForm" class="open-sans text-[16px] w-[30%]">
                 <div class="w-full pb-[24px] ">
                     <h4 class="text-[#642C0C]">Your Name :</h4>
-                    <input type="text" placeholder="Type your name..." class="w-[528.75px] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <input type="text" v-model="formData.name" placeholder="Type your name..." class="w-[528.75px] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <div v-if="formErrors.name" class="text-red-500">{{ formErrors.name }}</div>
                 </div>
                 <div class="w-full pb-[24px] ">
                     <h4 class="text-[#642C0C]">Email address :</h4>
-                    <input type="text" placeholder="Type your email address..." class="w-[528.75px] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <input type="text" v-model="formData.email" placeholder="Type your email address..." class="w-[528.75px] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <div v-if="formErrors.email" class="text-red-500">{{ formErrors.email }}</div>
                 </div>
                 <div class="w-full pb-[24px] ">
                     <h4 class="text-[#642C0C]">Subject :</h4>
-                    <input type="text" placeholder="This is an optional" class="w-[528.75px] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <input type="text" v-model="formData.subject" placeholder="This is an optional" class="w-[528.75px] h-[50px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <div v-if="formErrors.subject" class="text-red-500">{{ formErrors.subject }}</div>
                 </div>
                 <div class="w-full pb-[24px] ">
                     <h4 class="text-[#642C0C]">Message :</h4>
-                    <textarea type="text" placeholder="Hi! i’d like to ask about" class="w-[528.75px] p-2  h-[150px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <textarea type="text" v-model="formData.msg" placeholder="Hi! i’d like to ask about" class="w-[528.75px] p-2  h-[150px] text-[16px] border-[#CCC4B4] px-[10px] border-[2px] "/>
+                    <div v-if="formErrors.msg" class="text-red-500">{{ formErrors.msg }}</div>
                 </div>
                 <div>
                     <button class=" h-[51px] bg-[#C0772C] w-[194px] text-[#FFFFFF] font-extrabold text-[16px]">Contact Us</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="px-[100px] pb-[50px]">
@@ -68,7 +72,7 @@ import NavBarVue from '../Nav-bar.vue'
 import { FlIOsArrowRtl } from "@kalimahapps/vue-icons";
 
 export default {
-    name: 'ContactPageVue',
+    name: 'ContactPage',
     components:{
         LMap,
         LTileLayer,
@@ -76,6 +80,54 @@ export default {
         FooterBarVue,
         NavBarVue,
         FlIOsArrowRtl
+    },
+    data(){
+        return{
+            formData: {
+                name: '',
+                email:'',
+                subject: '',
+                msg: ''
+            },
+            formErrors: {},
+        }
+    },
+    methods:{
+        validateForm() {
+            this.formErrors = {}; 
+
+            if (!this.formData.name.trim()) {
+                this.formErrors.name = 'Name is required.';
+            }
+
+            if (!this.formData.email.trim()) {
+                this.formErrors.email = 'Email is required.';
+            } else if (!this.validEmail(this.formData.email)) {
+                this.formErrors.email = 'Email must be valid (example@gmail.com).';
+            }
+
+            if (!this.formData.subject) {
+                this.formErrors.subject = 'Subject is required.';
+            }
+
+            if (!this.formData.msg) {
+                this.formErrors.msg = 'Message is required.';
+            }
+            return Object.keys(this.formErrors).length === 0;
+        },
+        validEmail(email) {
+             // eslint-disable-next-line 
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+            return re.test(email);
+        },
+        submitForm() {
+            if (this.validateForm()) {
+                console.log("Form submitted successfully");
+                // Here you can add your form submission logic
+            } else {
+                console.log("Form validation failed");
+            }
+        },
     }
 }
 </script>

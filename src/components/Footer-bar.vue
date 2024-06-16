@@ -8,18 +8,17 @@
                     <h3 class="text-[#ffff] open-sans text-[18px] pt-[24px]">Jl. Gatot Subroto, Bandung</h3>
                 </div>
                 <div class="flex justify-between gap-[50px]">
-                    <div>
+                    <div >
                         <h5 class="text-[#CCC4B4] open-sans text-[16px]">Link</h5>
-                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]">Home</h5>
-                        <h5 class="text-[#FFFFFF] text-[16px] pt-[25px]">About</h5>
-                        <h5 class="text-[#FFFFFF] text-[16px] pt-[25px]">Product</h5>
-                        <h5 class="text-[#FFFFFF] text-[16px] pt-[25px]">Contact</h5>
+                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]"><router-link to="/" >Home</router-link></h5>
+                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]"><router-link to="/products">Product</router-link></h5>
+                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]"><router-link to="/contact">Contact</router-link></h5>
+                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]"><router-link to="/about">About</router-link></h5>
                     </div>
                     <div>
                         <h5 class="text-[#CCC4B4] open-sans text-[16px]">Help</h5>
-                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]">Payment option</h5>
-                        <h5 class="text-[#FFFFFF] text-[16px] pt-[25px]">Return</h5>
-                        <h5 class="text-[#FFFFFF] text-[16px] pt-[25px]">Privacy Policy</h5>
+                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]"><router-link to="" >Payment option</router-link></h5>
+                        <h5 class="text-[#FFFFFF] text-[16px] pt-[15px]"><router-link to="" >Privacy Policy</router-link></h5>
                     </div>
                 </div>
             </div>

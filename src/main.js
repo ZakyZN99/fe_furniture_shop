@@ -3,7 +3,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/tailwind.css'
 import store from './store';
-import router from './router'
+import axios from 'axios'
+
+import router from './router.js'
 
 
 
@@ -12,6 +14,7 @@ import router from './router'
 const app = createApp(App);
 
 app.use(store);
+app.use(axios);
 app.use(router);
 
 app.mount('#app');

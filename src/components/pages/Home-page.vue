@@ -9,7 +9,7 @@
                     <span class="text-[#642C0C] text-[52px] font-bold">for Your <br/> Home</span>
                 </p>
                 <p class="text-[#C0772C] text-[18px] open-sans font-light pb-[40px]">Transform your living space with our stylish and modern <br/> furniture collections.</p>
-                <button class="text-[#ffffff] w-[181px] h-[51px] bg-[#C0772C] font-extrabold text-[16px]">Shop Now</button>
+                <button  @click="goToShop" class="text-[#ffffff] w-[181px] h-[51px] bg-[#C0772C] font-extrabold text-[16px]">Shop Now</button>
             </div>
             <img class="h-full w-full object-cover" src="../../assets/img/spacejoy-ctyssSFmXmU-unsplash 1.png">
         </div>
@@ -32,12 +32,12 @@
                 </div>
             </div>
             <div class="flex pt-[71px] items-center justify-between ">
-                <!-- <div class="flex gap-[12px]"> -->
+                <div class="flex gap-[12px]">
                     <!-- <img  src="../../assets/icons/Ellipse 99.png" class="w-[13.74px] h-[13.47px]"/>
                     <img src="../../assets/icons/Ellipse 100.png" class="w-[13.74px] h-[13.47px]"/>
                     <img src="../../assets/icons/Ellipse 100.png" class="w-[13.74px] h-[13.47px] "/>
                     <img src="../../assets/icons/Ellipse 100.png" class="w-[13.74px] h-[13.47px] "/> -->
-                <!-- </div> -->
+                </div>
                 <div class="flex space-x-[24px]">
                     <button @click="prevImage" class=" hover:bg-white flex justify-center items-center rounded-full border-[#E5D097] w-[60px] h-[60px] border-2"><img class="w-[25.67px] h-[21.98px]" src="../../assets/icons/arrow_back.png"/></button>
                     <button @click="nextImage" class=" hover:bg-white flex justify-center items-center rounded-full border-[#E5D097] w-[60px] h-[60px] border-2"><img class="w-[25.67px] h-[21.98px]" src="../../assets/icons/arrow_forward.png"/></button>
@@ -95,38 +95,11 @@
                 <h1 class="text-[#ffffff] font-medium text-[48px]">Discover Our Latest <br/>Furniture Collections</h1>
                 <p class="pt-[24px] open-sans text-[20px] text-[#CCC4B4] ">Explore our new arrivals and seasonal collections to find the perfect furniture for your home.</p>
                 <div class="pt-[45px] flex gap-[22px]">
-                    <button class="bg-[#C0772C] text-[#ffff] text-[16px] font-extrabold w-[107px] h-[45px] hover:bg-[#ffffff] hover:text-[#C0772C]">Shop Now</button>
-                    <button class="border-[#C0772C] text-[#ffff] border-[1px] font-extrabold text-[16px] w-[107px] h-[45px] hover:bg-[#C0772C] ">Browse</button>
+                    <button @click="goToShop" class="bg-[#C0772C] text-[#ffff] text-[16px] font-extrabold w-[107px] h-[45px] hover:bg-[#ffffff] hover:text-[#C0772C]">Shop Now</button>
+                    <button @click="goToShop" class="border-[#C0772C] text-[#ffff] border-[1px] font-extrabold text-[16px] w-[107px] h-[45px] hover:bg-[#C0772C] ">Browse</button>
                 </div>
             </div>
             <img src="../../assets/img/cover/cover_4.png" class="w-[100%] h-full object-cover" />
-        </div>
-
-        <div class="w-[100%] h-619px pl-[100px] bg-[#ffffff]">
-            <h1 class="text-[#642C0C] font-medium text-[48px] pt-[100px]">Happy Costumers</h1>
-            <p class="open-sans text-[18px] text-[#CCC4B4] pt-[24px]">Hear what our customers have to say about us</p>
-            <div class="flex gap-[85px] pl-[250px] pb-[79px]">
-                <div class="w-[351px] h-[317px] pt-[24px]">
-                    <img src="../../assets/icons/Star.png" class="w-[168px] pt-[30px]" />
-                    <p class="pt-[24px] open-sans font-bold text-[#642C0C] text-[18px]">Our experience with this company has been outstanding.</p>
-                    <img src="../../assets/img/person/person1.png" class="w-[75px] pt-[32px]"/>
-                    <p class="text-[#642C0C] text-[18px] font-semibold">John Doe</p>
-                    <p class="text-[#CCC4B4] open-sans font-light text-[18px]">CEO, XYZ Company</p>
-                </div>
-                <div class=" w-[351px] h-[317px] pt-[24px]">
-                    <img src="../../assets/icons/Star.png" class="w-[168px] pt-[30px]" />
-                    <p class="pt-[24px] open-sans font-bold text-[#642C0C] text-[18px]">Our experience with this company has been outstanding.</p>
-                    <img src="../../assets/img/person/person2.png" class="w-[75px] pt-[32px]"/>
-                    <p class="text-[#642C0C] text-[18px] font-semibold">John Doe</p>
-                    <p class="text-[#CCC4B4] open-sans font-light text-[18px]">CEO, XYZ Company</p>
-                </div><div class=" w-[351px] h-[317px] pt-[24px]">
-                    <img src="../../assets/icons/Star.png" class="w-[168px] pt-[30px]" />
-                    <p class="pt-[24px] open-sans font-bold text-[#642C0C] text-[18px]">Our experience with this company has been outstanding.</p>
-                    <img src="../../assets/img/person/person3.png" class="w-[75px] pt-[32px]"/>
-                    <p class="text-[#642C0C] text-[18px] font-semibold">John Doe</p>
-                    <p class="text-[#CCC4B4] open-sans font-light text-[18px]">CEO, XYZ Company</p>
-                </div>
-            </div>
         </div>
 
         <div class="bg-[#F8F8F8] w-[100%] items-center text-center justify-center">
@@ -153,52 +126,22 @@
             <div class="pb-[94px]">
                 <p class="text-[#642C0C] font-medium text-[48px] pt-[100px]">Still have questions?</p>
                 <p class="text-[#CCC4B4] text-[18px] open-sans pb-[32px] pt-[24px]">Contact our support team for assistance.</p>
-                <button class="w-[130px] h-[51px] bg-[#C0772C]  text-[#ffffff] text-[16px] font-semibold ">Contact</button>
+                <button @click="goToContact" class="w-[130px] h-[51px] bg-[#C0772C]  text-[#ffffff] text-[16px] font-semibold ">Contact</button>
             </div>
         </div>
         
-        <div class="h-[1080px] bg-[#ffffff] w-full px-[100px] py-[100px]">
-            <div class="flex justify-between" >
-                <div>
-                    <h5 class="open-sans text-[18px] text-[#642C0C]">Solutions</h5>
-                    <h1 class="pt-[16px] text-[#642C0C] font-medium text-[48px] pb[24px] ">Get in Touch</h1>
-                    <p class="text-[#642C0C] open-sans text-[18px] ">Have a question or need assistance? Feel free to reach out to us!</p>
-                </div>
-                <div>
-                    <h3 class="pb-[24px] open-sans font-semibold text-[20px] text-[#642C0C]">Email</h3>
-                    <p class="open-sans text-[#642C0C] text-[18px] pb-[28px]">contact@furniture.com</p>
-                    <h3 class="pb-[24px] open-sans font-semibold text-[20px] text-[#642C0C]">Phone</h3>
-                    <p class="open-sans text-[#642C0C] text-[18px] pb-[28px]">+62 00225 555</p>
-                    <h3 class="pb-[24px] open-sans font-semibold text-[20px] text-[#642C0C]">Office</h3>
-                    <p class="open-sans text-[#642C0C] text-[18px] pb-[48px]">Jl. Gatot Subroto, Bandung</p>
-                </div>
-            </div>
-            <div>
-                <l-map style="height: 500px; width: full;" :zoom="13" :center="[-6.9350452, 107.6368356]">
-                    <l-tile-layer :url="'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'"></l-tile-layer>
-                    <l-marker :lat-lng="[-6.9267596, 107.6316847]"></l-marker>
-                </l-map>
-            </div>
-        </div>
     <footer-bar/>
     </div>
 </template>
 
 
 <script>
-import "leaflet/dist/leaflet.css";
-
-
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 import NavBar from '../Nav-bar.vue';
 import FooterBar from '../Footer-bar.vue';
 
 export default {
     name: 'HomePageVue',
     components: {
-        LMap,
-        LTileLayer,
-        LMarker,
         NavBar,
         FooterBar
     },
@@ -255,6 +198,12 @@ export default {
             }
             this.$refs.productContainer.classList.add('transform', `translate-x(-${this.currentImageIndex}px)`);
         },
+        goToShop(){
+            this.$router.push({ name: "ViewProductPageVue" });
+        },
+        goToContact(){
+            this.$router.push({ name: "ContactPage" });
+        }
     },
     mounted(){
         fetch('/dataJson/dummyProducts.json')
@@ -266,7 +215,6 @@ export default {
                     image: require(`@/assets/img/${product.image}`)
                 }
             })
-            this.updateDisplayedProducts();
         }).catch(err => {
             console.error("error", err);
         })

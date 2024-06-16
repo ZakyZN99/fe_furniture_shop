@@ -34,12 +34,12 @@
 
         <!-- MAIN:  ALL PRODUCTS -->
         <div class="grid grid-cols-3 gap-[30px] px-[100px] pt-[50px] ">
-            <div  v-for="(product, index) in paginatedProducts" :key="index"  class="border w-[393px] h-[475px]  transition ease-in-out duration-700" >
+            <div  v-for="(product, index) in paginatedProducts" :key="index" class="border w-[393px] h-[475px]  transition ease-in-out duration-700"  @click="goToProductDetail(product.id)">
                 <img :src="product.image" class="w-[393px] h-[334px]" />
                 <div class="pl-[13px] pt-[18px] w-[393px] h-[141px]">
                     <h1 class="open-sans font-semibold text-[24px] text-[#642C0C]">{{product.title}}</h1>
                     <p class="open-sans font-normal text-[16px] text-[#CCC4B4]">{{product.description}}</p>
-                    <p class="open-sans font-semibold text-[24px] text-[#642C0C]">{{product.price}}</p>
+                    <p class="open-sans font-semibold text-[24px] text-[#642C0C]">Rp. {{product.price.toLocaleString()}}</p>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@ import { SuFiltering } from "@kalimahapps/vue-icons";
 import FooterBar from '../Footer-bar.vue';
 
 export default {
-    name: 'ViewProductPageVue',
+    // name: 'ViewProductPageVue',
     components: {
         NavBar,
         FooterBar,
@@ -116,6 +116,9 @@ export default {
             if (this.currentPage < this.totalPages) {
                 this.currentPage++;
             }
+        },
+        goToProductDetail(productId) {
+        this.$router.push({ name: 'DetailProductPage', params: { id: productId } });
         }
     },
     mounted(){
@@ -128,7 +131,6 @@ export default {
                     image: require(`@/assets/img/${product.image}`)
                 }
             })
-            this.updateDisplayedProducts();
         }).catch(err => {
             console.error("error", err);
         })
