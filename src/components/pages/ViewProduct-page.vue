@@ -37,7 +37,7 @@
             <div  v-for="(product, index) in paginatedProducts" :key="index" class="border w-[393px] h-[475px]  transition ease-in-out duration-700"  @click="goToProductDetail(product.id)">
                 <img :src="product.image" class="w-[393px] h-[334px]" />
                 <div class="pl-[13px] pt-[18px] w-[393px] h-[141px]">
-                    <h1 class="open-sans font-semibold text-[24px] text-[#642C0C]">{{product.title}}</h1>
+                    <h1 class="open-sans font-semibold text-[24px] text-[#642C0C]">{{product.name}}</h1>
                     <p class="open-sans font-normal text-[16px] text-[#CCC4B4]">{{product.description}}</p>
                     <p class="open-sans font-semibold text-[24px] text-[#642C0C]">Rp. {{product.price.toLocaleString()}}</p>
                 </div>
@@ -75,6 +75,7 @@ import NavBar from '../Nav-bar.vue';
 import { FlIOsArrowRtl } from "@kalimahapps/vue-icons";
 import { SuFiltering } from "@kalimahapps/vue-icons";
 import FooterBar from '../Footer-bar.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     // name: 'ViewProductPageVue',
@@ -92,21 +93,39 @@ export default {
         }
     },
     computed:{
+        ...mapGetters(['getSearchQuery']),
         totalPages(){
             return Math.ceil(this.products.length / this.productPerpage);
         },
-        paginatedProducts(){
-            const start = (this.currentPage - 1) * this.productPerpage;
-            const end = start + this.productPerpage;
-            return this.products.slice(start, end)
-        },
+        paginatedProducts() {
+        const start = (this.currentPage - 1) * this.productPerpage;
+        const end = start + this.productPerpage;
+        let filteredProducts = this.products;
+
+        const searchQuery = this.getSearchQuery?.toLowerCase() ?? '';
+            if (searchQuery) {
+            filteredProducts = this.products.filter(product =>
+            product.name.toLowerCase().includes(searchQuery)
+            );
+        }
+
+        return filteredProducts.slice(start, end);
+    },
         start(){
             return (this.currentPage - 1) * this.productPerpage;
         },
         end(){
             return Math.min(this.currentPage * this.productPerpage, this.products.length);
         }
-    }, methods: {
+    },
+    watch:{
+        getSearchQuery(newValue) {
+        // Handle live search here (if needed)
+        console.log('Search query changed:', newValue);
+        // You can trigger any additional actions based on live search here
+    },
+    },
+    methods: {
         prevPage() {
             if (this.currentPage > 1) {
                 this.currentPage--;
@@ -119,7 +138,7 @@ export default {
         },
         goToProductDetail(productId) {
         this.$router.push({ name: 'DetailProductPage', params: { id: productId } });
-        }
+        },
     },
     mounted(){
         fetch('/dataJson/dummyProducts.json')

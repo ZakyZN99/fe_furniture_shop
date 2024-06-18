@@ -83,38 +83,38 @@
                     <div>
                         <h1 class="open-sans font-semibold text-[20px]">ATM/Bank Transfer</h1>
                         <div class="flex items-center pt-[20px]">
-                        <input type="radio" id="Dana" name="payment-method" value="dana" class="mr-[10px]" />
-                            <label for="dana" class="flex items-center">
-                                <img src="../../assets/img/payment/Dana.png" alt="Dana" class="w-[58px] mr-[10px]" />
-                                <span class="text-[16px] text-[#642C0C] open-sans font-semibold">Dana</span>
+                        <input type="radio" id="BNI" name="payment-method" value="BNI" class="mr-[10px]" />
+                            <label for="BNI" class="flex items-center">
+                                <img src="../../assets/img/payment/Bank_Central_Asia.png" alt="BNI" class="w-[58px] mr-[10px]" />
+                                <span class="text-[16px] text-[#642C0C] open-sans font-semibold">Bank Central Asia (BNI)</span>
                             </label>
                         </div>
                         <div class="flex items-center pt-[20px]">
-                            <input type="radio" id="OVO" name="payment-method" value="OVO" class="mr-[10px]" />
-                                <label for="OVO" class="flex items-center">
-                                    <img src="../../assets/img/payment/Ovo.png" alt="OVO" class="w-[58px] mr-[10px]" />
-                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">OVO</span>
+                            <input type="radio" id="BNI" name="payment-method" value="BNI" class="mr-[10px]" />
+                                <label for="BNI" class="flex items-center">
+                                    <img src="../../assets/img/payment/BNI.png" alt="BNI" class="w-[58px] mr-[10px]" />
+                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">Bank Negara Indonesia (BNI)</span>
                                 </label>
                         </div>
                         <div class="flex items-center pt-[20px]">
-                            <input type="radio" id="Gopay" name="payment-method" value="Gopay" class="mr-[10px]" />
-                                <label for="Gopay" class="flex items-center">
-                                    <img src="../../assets/img/payment/GoPay.png" alt="Gopay" class="w-[58px] mr-[10px]" />
-                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">GoPay</span>
+                            <input type="radio" id="BRI" name="payment-method" value="BRI" class="mr-[10px]" />
+                                <label for="BRI" class="flex items-center">
+                                    <img src="../../assets/img/payment/BRI.png" alt="BRI" class="w-[58px] mr-[10px]" />
+                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">Bank Rakyat Indonesia (BRI)</span>
                                 </label>
                         </div>
                         <div class="flex items-center pt-[20px]">
-                            <input type="radio" id="shopeepay" name="payment-method" value="shopeepay" class="mr-[10px]" />
-                                <label for="shopeepay" class="flex items-center">
-                                    <img src="../../assets/img/payment/ShopeePay.png" alt="shopeepay" class="w-[58px] mr-[10px]" />
-                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">ShopeePay</span>
+                            <input type="radio" id="mandiri" name="payment-method" value="mandiri" class="mr-[10px]" />
+                                <label for="mandiri" class="flex items-center">
+                                    <img src="../../assets/img/payment/Mandiri.png" alt="mandiri" class="w-[58px] mr-[10px]" />
+                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">Mandiri</span>
                                 </label>
                         </div>
                         <div class="flex items-center pt-[20px]">
-                            <input type="radio" id="linkaja" name="payment-method" value="linkaja" class="mr-[10px]" />
-                                <label for="linkaja" class="flex items-center">
-                                    <img src="../../assets/img/payment/LinkAja.png" alt="linkaja" class="w-[58px] mr-[10px]" />
-                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">LinkAja</span>
+                            <input type="radio" id="permatabank" name="payment-method" value="permatabank" class="mr-[10px]" />
+                                <label for="permatabank" class="flex items-center">
+                                    <img src="../../assets/img/payment/PermataBank.png" alt="permatabank" class="w-[58px] mr-[10px]" />
+                                    <span class="text-[16px] text-[#642C0C] open-sans font-semibold">Permata Bank</span>
                                 </label>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
             <hr class="bg-[#D9D9D9] justify-center my-[24px] h-[2px]"/>
             <div class="flex justify-between">
                 <h2 class="open-sans font-normal text-[16px] text-[#642C0C]">Total</h2>
-                <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. {{ cartTotal }}</h2>
+                <h2 class="text-[#000] open-sans font-normal text-[16px]">Rp. {{ this.totalPricePayment.toLocaleString() }}</h2>
             </div>
             <hr class="bg-[#D9D9D9] justify-center my-[24px] h-[2px]"/>
             <div class="">
@@ -144,19 +144,23 @@
 import FooterBarVue from '../Footer-bar.vue'
 import NavBarVue from '../Nav-bar.vue'
 import { FlIOsArrowRtl } from "@kalimahapps/vue-icons";
+import { mapState } from 'vuex';
 
 
 
 export default {
     name: 'PaymentMethodPageVue',
-    props: ['cartTotal'],
     components:{
         FooterBarVue,
         NavBarVue,
         FlIOsArrowRtl
     },
+    computed: {
+        ...mapState(['shippingFee', 'totalPricePayment']),
+    },
     mounted() {
-        console.log('Cart Total:', this.cartTotal); // Check if cartTotal is received
+        console.log('Shipping Fee:', this.shippingFee);
+        console.log('Total Price:', this.totalPricePayment);// Check if cartTotal is received
     }
 }
 

@@ -5,7 +5,16 @@ state: {
     cart: [], 
     selectedProductId: null,
     selectedProduct: null,
+    shippingFee: 0,
+    totalPricePayment: 0,
+    searchQuery: '',
 }, mutations: {
+    SET_SHIPPING_FEE(state, fee) {
+        state.shippingFee = fee;
+    },
+    SET_TOTAL_PRICE_PAYMENT(state, price) {
+        state.totalPricePayment = price;
+    },
     ADD_TO_CART(state, product) {
         const existingProduct = state.cart.find(item => item.id === product.id);
         if (existingProduct) {
@@ -37,6 +46,9 @@ state: {
     SET_SELECTED_PRODUCT(state, product) {
         state.selectedProduct = product;
     },
+    setSearchQuery(state, query) {
+        state.searchQuery = query;
+    },
 },
 actions: {
     addToCart({ commit }, product) {
@@ -57,6 +69,15 @@ actions: {
     setFavorite({ commit }, isFavorite) {
         commit('SET_FAVORITE', isFavorite);
     },
+    setShippingFee({ commit }, fee) {
+        commit('SET_SHIPPING_FEE', fee);
+    },
+    setTotalPricePayment({ commit }, price) {
+        commit('SET_TOTAL_PRICE_PAYMENT', price);
+    },
+    updateSearchQuery({ commit }, query) {
+        commit('setSearchQuery', query);
+    },
 }, 
 getters: {
     cartItems: (state) => state.cart,
@@ -67,6 +88,9 @@ getters: {
             }, 0);
         }
     },
+    shippingFee: state => state.shippingFee,
+    totalPricePayment: state => state.totalPricePayment,
+    getSearchQuery: state => state.searchQuery,
 });
 
 export default store;

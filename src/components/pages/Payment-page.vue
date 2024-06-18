@@ -178,12 +178,11 @@
 import NavBar from '../Nav-bar.vue';
 import FooterBar from '../Footer-bar.vue';
 import { FlIOsArrowRtl } from "@kalimahapps/vue-icons";
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import axios from 'axios';
 
 export default {
-    name: 'PaymentPageVue' ,
-    props: ['cartTotal'],
+    name: 'PaymentPageVue',
     components:{
         NavBar,
         FooterBar,
@@ -232,6 +231,7 @@ export default {
     },
     methods:{
         ...mapActions(['updateQuantity']),
+        ...mapMutations(['SET_SHIPPING_FEE', 'SET_TOTAL_PRICE_PAYMENT']),
         async fetchProvinces() {
             try {
                 const response = await axios.get('https://zakyzn99.github.io/api-wilayah-indonesia/api/provinces.json');
@@ -302,8 +302,17 @@ export default {
         },
         submitForm() {
             if (this.validateForm()) {
-                this.$router.push({name: 'PaymentMethodPageVue' ,
-                params: { cartTotal: this.calculatedCartTotal }})
+                const shippingOption = this.shippingOptions.find(option => option.id === parseInt(this.formData.shippingOption));
+                const shippingFee = shippingOption ? shippingOption.price : 0;
+                const totalPricePayment = this.calculatedCartTotal;
+                    
+                this.$store.commit('SET_SHIPPING_FEE', shippingFee);
+                this.$store.commit('SET_TOTAL_PRICE_PAYMENT', totalPricePayment);
+
+                console.log(`TotalPrice: ${totalPricePayment}`)
+                console.log(`ShippingFee: ${shippingFee}`)
+
+                this.$router.push({name: 'PaymentMethodPageVue' })
             }
         },
     }

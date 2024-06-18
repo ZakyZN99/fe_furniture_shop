@@ -12,7 +12,7 @@
             </div>
             <div class="hidden items-center md:flex space-x-[44px]">
                 <ul class="md:flex space-x-[44px]">
-                    <input v-if="isSearchActive" type="text" placeholder="Search" class="border p-1 border-gray-300 rounded-md focus:outline-none focus:border-[#C0772C]">
+                    <input v-if="isSearchActive" type="text" v-model="searchQuery"  @input="handleSearchInput" placeholder="Search" class="border p-1 border-gray-300 rounded-md focus:outline-none focus:border-[#C0772C]">
                     <li><a href="#"><img src="../assets/icons/akar-icons_search.png" @click="toggleSearch" /></a></li>
                     <li><a href="#"><img src="../assets/icons/akar-icons_heart.png" /></a></li>
                     <li class="relative" @click="toggleCarts" >
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'NavBar',
@@ -71,20 +71,22 @@ export default {
         return {
             isMenuActive: false,
             isSearchActive: false,
-            isCartsActive: false
+            isCartsActive: false,
+            searchQuery: this.getSearchQuery,
         };
     },
     computed: {
     ...mapState(['cart']),
+    ...mapGetters(['getSearchQuery']),
         cartItems() {
             return this.cart;
         },
         cartSubtotal() {
         return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
-        }
+        },
     },
     methods: {
-        ...mapActions(['removeFromCart', 'updateQuantity']),
+        ...mapActions(['removeFromCart', 'updateQuantity', 'updateSearchQuery']),
         toggleMenu() {
             this.isMenuActive = !this.isMenuActive;
         },
@@ -96,7 +98,10 @@ export default {
         },
         goToCartView(){
             this.$router.push({ name: "CartsPageVue" });
-        }
+        },
+        handleSearchInput() {
+            this.updateSearchQuery(this.searchQuery.trim());
+        },
     }
 }
 </script>
