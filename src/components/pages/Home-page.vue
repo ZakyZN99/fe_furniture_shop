@@ -206,18 +206,24 @@ export default {
         }
     },
     mounted(){
-        fetch('/dataJson/dummyProducts.json')
-        .then(response => response.json())
-        .then(data => {
-            this.products = data.products.map(product => {
-                return{
-                    ...product,
-                    image: require(`@/assets/img/${product.image}`)
-                }
-            })
-        }).catch(err => {
-            console.error("error", err);
-        })
+    fetch('/dataJson/dummyProducts.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        this.products = data.products.map(product => {
+            return {
+                ...product,
+                image: require(`@/assets/img/${product.image}`)
+            };
+        });
+    })
+    .catch(err => {
+        console.error("Error fetching or parsing data", err);
+    });
     }
 }
 </script>
