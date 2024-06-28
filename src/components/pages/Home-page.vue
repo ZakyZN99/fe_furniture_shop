@@ -206,13 +206,13 @@ export default {
         }
     },
     mounted(){
-        fetch('@/assets/dataJson/dummyProducts.json')
+        fetch('../../assets/dataJson/dummyProducts.json')
         .then(response => response.json())
         .then(data => {
             this.products = data.products.map(product => {
                 return{
                     ...product,
-                    image: require(`@/assets/img/${product.image}`)
+                    image: require(`../../assets/img/${product.image}`)
                 }
             })
         }).catch(err => {
