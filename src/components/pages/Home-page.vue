@@ -206,19 +206,25 @@ export default {
         }
     },
     mounted(){
-        fetch('../../assets/dataJson/dummyProducts.json')
-        .then(response => response.json())
-        .then(data => {
-            this.products = data.products.map(product => {
+    fetch('/dataJson/dummyProducts.json')
+    .then(response => response.text()) 
+    .then(data => {
+        console.log(data); 
+        try {
+            const jsonData = JSON.parse(data);
+            this.products = jsonData.products.map(product => {
                 return{
                     ...product,
-                    image: require(`../../assets/img/${product.image}`)
+                    image: require(`@/assets/img/${product.image}`)
                 }
-            })
-        }).catch(err => {
-            console.error("error", err);
-        })
-    }
+            });
+        } catch (err) {
+            console.error("Failed to parse JSON", err);
+        }
+    }).catch(err => {
+        console.error("Error fetching data", err);
+    });
+}
 }
 </script>
 
