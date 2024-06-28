@@ -12,7 +12,9 @@
             </div>
             <div class="hidden items-center md:flex space-x-[44px]">
                 <ul class="md:flex space-x-[44px]">
-                    <input v-if="isSearchActive" type="text" v-model="searchQuery"  @input="handleSearchInput" placeholder="Search" class="border p-1 border-gray-300 rounded-md focus:outline-none focus:border-[#C0772C]">
+                    <div v-if="isSearchActive" class="search-input-container">
+                        <input type="text" v-model="searchQuery" @input="handleSearchInput" @keyup.enter="performSearch" placeholder="Search" class="border p-1 border-gray-300 rounded-md focus:outline-none focus:border-[#C0772C]">
+                    </div>
                     <li><a href="#"><img src="../assets/icons/akar-icons_search.png" @click="toggleSearch" /></a></li>
                     <li><a href="#"><img src="../assets/icons/akar-icons_heart.png" /></a></li>
                     <li class="relative" @click="toggleCarts" >
@@ -63,7 +65,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
     name: 'NavBar',
@@ -72,12 +74,10 @@ export default {
             isMenuActive: false,
             isSearchActive: false,
             isCartsActive: false,
-            searchQuery: this.getSearchQuery,
         };
     },
     computed: {
     ...mapState(['cart']),
-    ...mapGetters(['getSearchQuery']),
         cartItems() {
             return this.cart;
         },
@@ -86,7 +86,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions(['removeFromCart', 'updateQuantity', 'updateSearchQuery']),
+        ...mapActions(['removeFromCart', 'updateQuantity', 'setSearchQuery']),
         toggleMenu() {
             this.isMenuActive = !this.isMenuActive;
         },
@@ -100,7 +100,7 @@ export default {
             this.$router.push({ name: "CartsPageVue" });
         },
         handleSearchInput() {
-            this.updateSearchQuery(this.searchQuery.trim());
+            this.setSearchQuery(this.searchQuery.trim());
         },
     }
 }

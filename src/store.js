@@ -46,7 +46,7 @@ state: {
     SET_SELECTED_PRODUCT(state, product) {
         state.selectedProduct = product;
     },
-    setSearchQuery(state, query) {
+    SET_SEARCH_QUERY(state, query) {
         state.searchQuery = query;
     },
 },
@@ -75,8 +75,8 @@ actions: {
     setTotalPricePayment({ commit }, price) {
         commit('SET_TOTAL_PRICE_PAYMENT', price);
     },
-    updateSearchQuery({ commit }, query) {
-        commit('setSearchQuery', query);
+    setSearchQuery({ commit }, query) {
+        commit('SET_SEARCH_QUERY', query);
     },
 }, 
 getters: {
@@ -90,7 +90,9 @@ getters: {
     },
     shippingFee: state => state.shippingFee,
     totalPricePayment: state => state.totalPricePayment,
-    getSearchQuery: state => state.searchQuery,
+    getSearchQuery(state) {
+        return state.searchQuery;
+    },
 });
 
 export default store;
