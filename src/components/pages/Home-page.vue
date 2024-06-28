@@ -206,7 +206,7 @@ export default {
         }
     },
     mounted(){
-        fetch('../../../public/datajson/dummyProducts.json')
+        fetch('/dataJson/dummyProducts.json')
         .then(response => response.json())
         .then(data => {
             this.products = data.products.map(product => {
